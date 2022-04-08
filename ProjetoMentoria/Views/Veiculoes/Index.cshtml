@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProjetoMentoria.ViewModels.VeiculoViewModel>
+
+@{
+    ViewData["Title"] = "Veiculos";
+}
+
+
+
+<p>
+     <a asp-action="Create" class="btn btn-primary"><i class="far fa-plus-square"></i>Novo Veículo</a> 
+</p>
+<table class="table table-striped" id="table-veiculos" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Placa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnoModelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AnoFrabricacao)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Placa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnoModelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnoFrabricacao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.VeiculoId"><i class="bi bi-pencil"></i></a> 
+                <a asp-action="Details" asp-route-id="@item.VeiculoId"><i class="bi bi-eye"></i></a> 
+                <a asp-action="Delete" asp-route-id="@item.VeiculoId"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

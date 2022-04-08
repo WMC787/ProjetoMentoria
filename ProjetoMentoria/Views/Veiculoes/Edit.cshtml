@@ -1,0 +1,73 @@
+﻿@model ProjetoMentoria.ViewModels.VeiculoViewModel
+@{
+    ViewData["Title"] = "Veiculos";
+}
+
+
+
+<h4>Veiculo</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="VeiculoId" />
+            <div class="card">
+                <div class="card-header"><h4>Veículo</h4></div>
+                <div class="card-body row">
+                    <div class ="col-md">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Placa" class="control-label"></label>
+                <input asp-for="Placa" class="form-control"/>
+                <span asp-validation-for="Placa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            </div>
+             
+            <div class="col-md">
+                <div class="form-group">
+                <label asp-for="Cor" class="control-label"></label>
+                <input asp-for="Cor" class="form-control" />
+                <span asp-validation-for="Cor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnoModelo" class="control-label"></label>
+                <input asp-for="AnoModelo" class="form-control" />
+                <span asp-validation-for="AnoModelo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnoFrabricacao" class="control-label"></label>
+                <input asp-for="AnoFrabricacao" class="form-control" />
+                <span asp-validation-for="AnoFrabricacao" class="text-danger"></span>
+            </div>
+            </div>
+            </div>
+            </div>
+            
+            <div class="form-group">
+                 <div class="col-md-3 offset-md-5">
+                <input type="submit" value="Salvar" class="btn btn-primary btn-lg" />
+
+                <a asp-action="Index" class="btn btn-secondary btn-lg"><i class="fa fa-arrow-circle-left"></i>Voltar</a>
+                
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,82 @@
+﻿@model ProjetoMentoria.ViewModels.CelularViewModel
+
+
+@{
+    ViewData["Title"] = "Celular";
+}
+
+<div class="alert alert-danger" role="alert">
+  Deseja realmente excluir o celular ?
+</div>
+
+
+<div class="row">
+    <div class="col-md">
+        <form asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CelularId" />
+            <div class="card">
+                <div class="card-header"><h4>Celular</h4></div>
+                <span class="border border-primary"></span>
+                <div class="card-body row">
+                    <div class ="col-md">
+            <div class="form-group">
+                <label asp-for="Dercicao" class="control-label"></label>
+                <input asp-for="Dercicao" class="form-control" disabled/>
+                <span asp-validation-for="Dercicao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataLancamento" class="control-label"></label>
+                <input asp-for="DataLancamento" class="form-control" disabled/>
+                <span asp-validation-for="DataLancamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Marca" class="control-label"></label>
+                <input asp-for="Marca" class="form-control" disabled/>
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TemCameraFrontal" disabled/> @Html.DisplayNameFor(model => model.TemCameraFrontal)
+                </label>
+            </div>
+            </div>
+             
+            <div class="col-md">
+                <div class="form-group">
+                <label asp-for="SistemaOperaciona" class="control-label"></label>
+                <input asp-for="SistemaOperaciona" class="form-control" disabled/>
+                <span asp-validation-for="SistemaOperaciona" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                <label asp-for="Modelo" class="control-label"></label>
+                <input asp-for="Modelo" class="form-control" disabled/>
+                <span asp-validation-for="Modelo" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="CapaciadadeMemoriaRam" class="control-label"></label>
+                <input asp-for="CapaciadadeMemoriaRam" class="form-control" disabled/>
+                <span asp-validation-for="CapaciadadeMemoriaRam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CapaciadadeAramazenamento" class="control-label"></label>
+                <input asp-for="CapaciadadeAramazenamento" class="form-control" disabled/>
+                <span asp-validation-for="CapaciadadeAramazenamento" class="text-danger"></span>
+            </div>
+            </div>
+            </div>
+            </div>
+            
+            <div class="form-group mt-4">
+                 <div class="col-md-3 offset-md-5 mt-2">
+                <input type="submit" value="Exlcuir" class="btn btn-danger btn-lg" />
+
+                <a asp-action="Index" class="btn btn-secondary btn-lg"><i class="fa fa-arrow-circle-left"></i>Voltar</a>
+                
+            </div>
+            </div>
+        </form>
+    </div>
+</div>

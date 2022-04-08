@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjetoMentoria.ViewModels.ComputadorViewModel>
+
+@{
+    ViewData["Title"] = "Computadores";
+}
+
+
+<p>
+<a asp-action="Create" class="btn btn-primary"><i class="far fa-plus-square"></i>Novo Computador</a></p>
+<table class="table table-striped" id="table-computador">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataLacamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TemPlacaDeVideo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VersaoProcessador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapacidadeMemoriaRam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapacidadeHDEmGb)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataLacamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TemPlacaDeVideo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VersaoProcessador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapacidadeMemoriaRam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapacidadeHDEmGb)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ComputadorId"><i class="bi bi-pencil"></i></a> 
+                <a asp-action="Details" asp-route-id="@item.ComputadorId"><i class="bi bi-eye"></i></a> 
+                <a asp-action="Delete" asp-route-id="@item.ComputadorId"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

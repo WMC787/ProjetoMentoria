@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProjetoMentoria.ViewModels.CelularViewModel>
+
+@{
+    ViewData["Title"] = "Celulares";
+}
+
+<p>
+<a asp-action="Create" class="btn btn-primary"><i class="far fa-plus-square"></i>Novo Celular</a>
+</p>
+<table class="table table-striped" id="table-celular">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dercicao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataLancamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TemCameraFrontal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SistemaOperaciona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapaciadadeMemoriaRam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapaciadadeAramazenamento)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dercicao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataLancamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TemCameraFrontal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SistemaOperaciona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapaciadadeMemoriaRam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapaciadadeAramazenamento)
+            </td>
+            <td>
+                 <a asp-action="Edit" asp-route-id="@item.CelularId"><i class="bi bi-pencil"></i></a> 
+                <a asp-action="Details" asp-route-id="@item.CelularId"><i class="bi bi-eye"></i></a> 
+                <a asp-action="Delete" asp-route-id="@item.CelularId"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
