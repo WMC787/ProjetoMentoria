@@ -318,6 +318,10 @@ namespace ProjetoMentoria.Data.Migrations
                     b.Property<string>("UF")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UrlImagem")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");

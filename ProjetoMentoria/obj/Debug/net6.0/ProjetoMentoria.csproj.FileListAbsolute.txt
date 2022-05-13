@@ -554,4 +554,10 @@ C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\obj\Debug\net6.0\ProjetoMento
 C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\obj\Debug\net6.0\ref\ProjetoMentoria.dll
 C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\obj\Debug\net6.0\ProjetoMentoria.pdb
 C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\obj\Debug\net6.0\ProjetoMentoria.genruntimeconfig.cache
+C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\bin\Debug\net6.0\refs\Microsoft.Extensions.Caching.Memory.dll
+C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Core.dll
+C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Stores.dll
 C:\Projetos Dotnet\ProjetoMentoria\ProjetoMentoria\obj\Debug\net6.0\ProjetoMentoria.csproj.AssemblyReference.cache

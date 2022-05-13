@@ -17,6 +17,6 @@ namespace ProjetoMentoria.Models
 
         public double? Peso { get; set; }
 
-        public decimal Valor { get; set; }
+        public decimal? Valor { get; set; }
     }
 }

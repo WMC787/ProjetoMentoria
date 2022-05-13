@@ -4,7 +4,7 @@
     $("#Telefone").mask("(00) 00000-0000");
     $("#CNPJ").mask("00.000.000/0000-00");
 
-    $("#CEP").focusout(function () {
+  $("#CEP").focusout(function () {
         $.ajax({
             url: "https://ws.apicep.com/cep/" + $("#CEP").val() + ".json",
             cache: false,
@@ -17,6 +17,15 @@
         });
     });
 });
+
+$(function () {
+    $('#').maskMoney({
+        prefix: 'R$ ',
+        allowNegative: true,
+        thousands: '.', decimal: ',',
+        affixesStay: true
+    });
+})
 
 $(document).ready(function () {
     $('#table-veiculos').DataTable({

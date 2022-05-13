@@ -56,5 +56,9 @@ namespace ProjetoMentoria.ViewModels
 
         public string? UF { get; set; }
 
+        public IFormFile? Imagem { get; set; }
+
+        public string? UrlImagem { get; set; } = null!;
+
     }
 }

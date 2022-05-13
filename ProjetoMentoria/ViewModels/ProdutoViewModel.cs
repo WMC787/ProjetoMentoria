@@ -27,10 +27,10 @@ namespace ProjetoMentoria.ViewModels
         [Display(Name = "Peso Kg")]
         public double? Peso { get; set; }
 
-        [Required(ErrorMessage = "O campo 'Valor' é obrigatório")]
+        
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Valor")]
-        public decimal Valor { get; set; }
+        public decimal? Valor { get; set; }
     }
 }

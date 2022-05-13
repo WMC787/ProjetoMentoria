@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,19 +18,25 @@ namespace ProjetoMentoria.Controllers
     public class ClientesController : Controller
     {
         private readonly ApplicationDbContext _context;
+       Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironmet;
 
-        public ClientesController(ApplicationDbContext context)
+        public ClientesController(ApplicationDbContext context, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironmet)
         {
             _context = context;
+            _hostingEnvironmet = hostingEnvironmet;
         }
-
-        // GET: Clientes
-        public async Task<IActionResult> Index()
+          
+            [HttpGet]
+        public async Task<IActionResult> Index(string Pesquisa,string Cnpj)
         {
+            
             var Clientes = await _context.Clientes.ToListAsync();
+
             var ListaClienteViewModel = Clientes.Select(x => new ClienteViewModel
+
             {
-                ClienteId = x.ClienteId,    
+
+                ClienteId = x.ClienteId,
                 Nome = x.Nome,
                 Idade = x.Idade,
                 Genero = x.Genero,
@@ -47,7 +54,40 @@ namespace ProjetoMentoria.Controllers
 
             });
 
+            var Query = _context.Clientes.AsQueryable();
+            if (!string.IsNullOrEmpty(Pesquisa))
+            {
+                Query = Query.Where(p => p.CPF.Contains(Pesquisa));
+
+            }
+           if (!string.IsNullOrEmpty(Cnpj))
+            {
+                Query = Query.Where(p => p.CNPJ.Contains(Cnpj));
+      
+            }
+            var ListaPesquisa = Query.Select(p => new ClienteViewModel
+            {
+                ClienteId = p.ClienteId,
+                Nome = p.Nome,
+                Idade = p.Idade,
+                Genero = p.Genero,
+                CPF = p.CPF,
+                CNPJ = p.CNPJ,
+                RG = p.RG,
+                Telefone = p.Telefone,
+                Email = p.Email,
+                CEP = p.CEP,
+                Logradouro = p.Logradouro,
+                Numero = p.Numero,
+                Bairro = p.Bairro,
+                Cidade = p.Cidade,
+                UF = p.UF,
+        });
+            return View(ListaPesquisa);
+
             return View(ListaClienteViewModel);
+
+
         }
 
         // GET: Clientes/Details/
@@ -81,13 +121,14 @@ namespace ProjetoMentoria.Controllers
                 Numero = cliente.Numero,
                 Bairro = cliente.Bairro,
                 Cidade = cliente.Cidade,
-                UF = cliente.UF
+                UF = cliente.UF,
+                UrlImagem = cliente.UrlImagem
             };
 
             return View(ClienteViewModel);
         }
 
-        // GET: Clientes/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -119,6 +160,18 @@ namespace ProjetoMentoria.Controllers
                     UF = clienteViewModel.UF
 
                 };
+
+                string filePatch = "";
+                if (clienteViewModel.Imagem != null && clienteViewModel.Imagem.Length > 0)
+                {
+                    string uploads = Path.Combine(_hostingEnvironmet.WebRootPath, "uploads", clienteViewModel.Imagem.FileName);
+                    filePatch = Path.Combine("uploads", clienteViewModel.Imagem.FileName);
+                    using (Stream fileStream = new FileStream(uploads, FileMode.Create))
+                    {
+                        await clienteViewModel.Imagem.CopyToAsync(fileStream);
+                    }
+                }
+                cliente.UrlImagem = filePatch;
                 _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -126,7 +179,7 @@ namespace ProjetoMentoria.Controllers
             return View(clienteViewModel);
         }
 
-        // GET: Clientes/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -194,6 +247,18 @@ namespace ProjetoMentoria.Controllers
                     cliente.Cidade = clienteViewModel.Cidade;
                     cliente.UF = clienteViewModel.UF;
 
+                    string filePatch = "";
+                    if (clienteViewModel.Imagem != null && clienteViewModel.Imagem.Length > 0)
+                    {
+                        string uploads = Path.Combine(_hostingEnvironmet.WebRootPath, "uploads", clienteViewModel.Imagem.FileName);
+                        filePatch = Path.Combine("uploads", clienteViewModel.Imagem.FileName);
+                        using (Stream fileStream = new FileStream(uploads, FileMode.Create))
+                        {
+                            await clienteViewModel.Imagem.CopyToAsync(fileStream);
+                        }
+                    }
+
+                    cliente.UrlImagem = filePatch;
                     _context.Update(cliente);
                     await _context.SaveChangesAsync();
                 }
@@ -209,6 +274,8 @@ namespace ProjetoMentoria.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
+
+
             }
             return View(clienteViewModel);
         }
@@ -250,7 +317,7 @@ namespace ProjetoMentoria.Controllers
             return View(ClienteViewModel);
         }
 
-        // POST: Clientes/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
